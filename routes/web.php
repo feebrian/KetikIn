@@ -19,14 +19,21 @@ use App\Http\Controllers\Post\PostController;
 //     return view('welcome');
 // });
 
-// to check health
-Route::view('/', 'home.home');
+/**
+ * Home Route
+ */
+Route::get('/', [PostController::class, 'index']);
 
-// authentication route
+/**
+ * Authentication route
+ */
 Route::view('/login', 'auth.signin', ['title' => 'Sign In']);
 Route::view('/signup', 'auth.signup', ['title' => 'Sign Up']);
 Route::post('/login', [AuthController::class, 'Register']);
 Route::post('/login', [AuthController::class, 'Authenticate']);
 Route::post('/logout', [AuthController::class, 'Logout']);
 
-Route::resource('/article', PostController::class);
+/**
+ * Article behaviour route
+ */
+Route::resource('/article', PostController::class)->middleware('auth');

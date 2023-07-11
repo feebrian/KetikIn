@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with(['user', 'category'])->get();
+        return view('home.home', compact('posts'));
     }
 
     /**
@@ -21,7 +24,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('auth.article.create', compact('categories'));
     }
 
     /**
@@ -29,7 +33,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedArticle = $request->validate([
+            'title' => ['required'],
+            'content' => ['required'],
+            'category_id' => ['required']
+        ]);
+
+        $validatedArticle['title'] = ucwords($validatedArticle['title']);
+        $validatedArticle['user_id'] = Auth::user()->id;
+        Post::create($validatedArticle);
+        $request->session()->flash('message', 'successfuly publish article!');
+        return redirect('/');
     }
 
     /**
