@@ -29,7 +29,7 @@ Route::get('/', [PostController::class, 'index']);
  */
 Route::view('/login', 'auth.signin', ['title' => 'Sign In']);
 Route::view('/signup', 'auth.signup', ['title' => 'Sign Up']);
-Route::post('/login', [AuthController::class, 'Register']);
+Route::post('/signup', [AuthController::class, 'Register']);
 Route::post('/login', [AuthController::class, 'Authenticate']);
 Route::post('/logout', [AuthController::class, 'Logout']);
 

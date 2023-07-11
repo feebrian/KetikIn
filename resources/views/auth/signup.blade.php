@@ -1,6 +1,6 @@
 @extends('template.auth')
 @section('auth-form')
-    <form action="/login" method="POST">
+    <form action="/signup" method="POST">
         @csrf
         <div class="form-group">
             <label for="username" class="label">Username</label>

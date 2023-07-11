@@ -41,6 +41,7 @@ class AuthController extends Controller
 
         // hash password input
         $validatedData["password"] = Hash::make($validatedData["password"]);
+        $validatedData["profile_pict"] = asset('static/images/user_profile/user-' . rand(1, 6) . '.jpg');
         User::create($validatedData);
 
         $request->session()->flash('success', 'Successfully register, please login now');
@@ -57,4 +58,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
 }

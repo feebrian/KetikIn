@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100">
+<div class="container mx-auto navbar bg-base-100">
     <div class="navbar-start">
         <div class="dropdown">
             <label tabindex="0" class="btn btn-ghost btn-circle">
@@ -10,9 +10,9 @@
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 @auth
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Settings</a></li>
                     <li><a href="#">My Article</a></li>
                     <li><a href="#">Stats</a></li>
+                    <li><a href="#">Settings</a></li>
                     <hr class="my-2">
                     <li>
                         <form action="/logout" method="POST">
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="navbar-center">
-        <a class="font-bold normal-case text-xl" href="/">KetikIn</a>
+        <a class="font-bold normal-case text-xl" href="/">Ketik<span class="text-primary underline">In</span></a>
     </div>
     <div class="navbar-end">
         <button class="btn btn-ghost btn-circle">

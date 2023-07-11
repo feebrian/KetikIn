@@ -12,14 +12,14 @@
 
 <body>
 
-    <div class="container mx-auto min-h-screen flex flex-col justify-between">
+    <div class="mx-auto min-h-screen flex flex-col justify-between">
 
         <div>
-            <nav>
+            <nav class="shadow-md sticky top-0">
                 @include('template.partials.navbar')
             </nav>
 
-            <main>
+            <main class="container mx-auto">
                 @yield('container')
             </main>
         </div>

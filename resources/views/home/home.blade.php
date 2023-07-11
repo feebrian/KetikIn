@@ -1,18 +1,16 @@
 @extends('template.template')
 @section('container')
     <section id="home">
-        @auth
-            <h2 class="text-center font-bold text-2xl">Hello, {{ Auth::user()->username }} let's write some article</h2>
-            <br>
-        @endauth
-        <div class="max-w-4xl mx-auto grid grid-cols-3 gap-x-4">
+
+        <div class="max-w-4xl mx-auto grid grid-cols-3 gap-x-4 my-8">
             <section id="article-container" class="col-span-2">
                 <div class="article">
                     @foreach ($posts as $p)
                         <article class="mb-8">
                             <div class="flex place-items-center gap-x-2.5">
-                                <a href="#">
-                                    <img src="static/images/gacor.png" alt="gacor" class="w-8 h-8 rounded-full">
+                                <a href="user/{{ $p->user->id }}">
+                                    <img src="{{ $p->user->profile_pict }}" alt="{{ $p->user->username }} profile picture"
+                                        class="w-8 h-8 rounded-full">
                                 </a>
 
                                 <p class="text-sm">
@@ -26,12 +24,13 @@
                                         <h2 class="text-2xl font-bold my-1.5">{{ $p->title }}</h2>
                                     </a>
                                     <a href="#">
-                                        <div class="font-serif">
+                                        <div class="font-serif break-words">
                                             <p>{!! $p->content !!}</p>
                                         </div>
                                     </a>
                                     <div class="flex gap-1 mt-1">
-                                        <a href="#" class="badge badge-ghost">Programming</a>
+                                        <a href="category/{{ $p->category->name }}"
+                                            class="badge badge-ghost">{{ $p->category->name }}</a>
                                     </div>
                                 </div>
                                 <div class="w-3/12 flex justify-end">
@@ -51,6 +50,7 @@
                     <h2>ini nanti akan jadi sidebar yang berisi newest post dan teman-temannya</h2>
                 </aside>
             </section>
+            {{ $posts->links('pagination::tailwind') }}
         </div>
     </section>
 @endsection
